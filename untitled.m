@@ -4,32 +4,39 @@ close all
 
 mu_0 = pi*4e-7;
 eps_0 = 8.854e-12;
-eps_r = ; %I choose
+eps_r = 2; %I choose
 c = 1/sqrt(mu_0*eps_0);
 
-f = ; %I choose
-lambda = c/f;
+f = 20e6; %I choose
+lambda_0 = c/f;
+lambda_1 = lambda_0/sqrt(eps_r);
 
-deltax = ; %I choose
-xmax = ; %I choose
+deltax = 0.02; %I choose
+xmax = 175; %I choose
 x = 0:deltax:xmax;
 
-tmax = ; %I choose
-S = ; %I choose
+tmax = xmax/c; %I choose
+S = 1; %I choose
 deltat = S*deltax/c;
 t = 0;
+d = lambda_1/2;
 
 eps = ones(length(x), 1) .* eps_0;
-s1 = ; %I choose
-eps(s1:end) = eps(s1:end)*eps_r;
+s1 = 75; %I choose
+s2 = s1 + round(d/deltax); %makes dielectric slab of thickness d
+eps(s1:s2) = eps(s1:s2)*eps_r;
 
-E = zeros(length(x), 3);
+
+E = zeros(length(x),3);
 
 x0 = 1;
-x1 = ; %I choose
+x1 = 5; %I choose
 
-t1 = ; %I choose
+t1 = 150/c; %I choose
 
 while t<tmax
-    E(2:end-1,3) = ;
+    E(2:end-1,3) = ((1./(mu_0*eps(2:end-1))) .* (deltat/deltax)^2 .* (E(3:end,2) - 2*E(2:end-1,2) + E(1:end-2,2))) + 2*E(2:end-1,2) - E(2:end-1,1);
+    E(:,1) = E(:,2);
+    E(:,2) = E(:,3);
+    t = t + deltat;
 end
