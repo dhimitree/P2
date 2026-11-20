@@ -44,6 +44,8 @@ x1 = 5; %I choose
 t1 = 150/c; %I choose
 n = 0;
 Ncyc = 3; %number of oscillations pulsed out
+E0max = 0;
+E1max = 0;
 
 while t<tmax
     E(2:end-1,3) = ((1./(mu_0*eps(2:end-1))) .* (deltat/deltax)^2 .* (E(3:end,2) - 2*E(2:end-1,2) + E(1:end-2,2))) + 2*E(2:end-1,2) - E(2:end-1,1);
