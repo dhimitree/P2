@@ -56,7 +56,7 @@ for k = 1:numel(fsweep)
         E(2:end-1,3) = ((1./(mu_0*eps(2:end-1))) .* (deltat/deltax)^2 .* (E(3:end,2) - 2*E(2:end-1,2) + E(1:end-2,2))) + 2*E(2:end-1,2) - E(2:end-1,1);
         E(x0,3) = sin(2*pi*f*t);
     
-    if t>tmax
+    if t>tmax -2/f
         E0max = max(E0max, abs (E(x0,3)));
         E1max = max(E1max, abs (E(x1,3)));
     end
@@ -67,7 +67,7 @@ for k = 1:numel(fsweep)
     end
 
 tau = E1max/E0max;
-gamma_fdtd = sqrt(1-tau^2);
+gamma_fdtd(k) = sqrt(1-tau^2);
 
 end
 
