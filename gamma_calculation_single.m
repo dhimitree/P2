@@ -78,4 +78,4 @@ plot(fa/1e6, gamma_th, 'LineWidth', 1.5); hold on
 plot(fsweep/1e6, gamma_fdtd, 'o', 'MarkerSize', 7, 'LineWidth', 1.5)
 xlabel('Frequency (MHz)'); 
 ylabel('|\Gamma|'); 
-legend('Analytic', 'FDTD'); grid on
+legend('Analytic', 'FDTD', 'Location', 'north'); grid on

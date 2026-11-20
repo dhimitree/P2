@@ -24,7 +24,7 @@ d = lambda_1/2;
 eps = ones(length(x), 1) .* eps_0;
 s1 = 4234; %I choose
 s2 = s1 + round(d/deltax); %makes dielectric slab of thickness d
-eps(s1:s2) = eps(s1:s2)*eps_r;
+eps(s1:s2-1) = eps_0*eps_r;
 
 
 E = zeros(length(x),3);
@@ -34,7 +34,7 @@ x1 = 5; %I choose
 
 t1 = 150/c; %I choose
 n = 0;
-Ncyc = 3; %number of oscillations pulsed out
+Ncyc = 5; %number of oscillations pulsed out
 
 while t<tmax
     E(2:end-1,3) = ((1./(mu_0*eps(2:end-1))) .* (deltat/deltax)^2 .* (E(3:end,2) - 2*E(2:end-1,2) + E(1:end-2,2))) + 2*E(2:end-1,2) - E(2:end-1,1);

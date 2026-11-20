@@ -31,9 +31,9 @@ s1 = round(((xmax/2) - ((d1+d2+d3)/2))/0.02); %I choose
 s2 = s1 + round(d1/deltax); %makes dielectric slab of thickness d
 s3 = s2 + round(d2/deltax);
 s4 = s3 + round(d3/deltax);
-eps(s1:s2) = eps_0*eps_r1;
-eps(s2:s3) = eps_0*eps_r2;
-eps(s3:s4) = eps_0*eps_r1;
+eps(s1:s2-1) = eps_0*eps_r1;
+eps(s2:s3-1) = eps_0*eps_r2;
+eps(s3:s4-1) = eps_0*eps_r1;
 
 
 E = zeros(length(x),3);
@@ -43,7 +43,7 @@ x1 = 5; %I choose
 
 t1 = 150/c; %I choose
 n = 0;
-Ncyc = 3; %number of oscillations pulsed out
+Ncyc = 5; %number of oscillations pulsed out
 E0max = 0;
 E1max = 0;
 
